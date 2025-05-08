@@ -1,0 +1,83 @@
+#navBar {
+    margin: auto;
+    width: 800px;
+ 
+    
+}
+
+
+#viewContact {
+    font-size: 80px;
+    text-align: center;
+    margin: auto;
+    
+}
+
+#viewButton {
+    width: 200px;
+    border-radius: 1px 50px 1px 50px;
+
+}
+
+#viewButton h1 {
+    font-size: 15px;
+
+}
+
+#addContact {
+    font-size: 80px;
+    text-align: center;
+    margin: auto;
+    
+}
+
+#addButton {
+    width: 200px;
+    border-radius: 1px 50px 1px 50px;
+
+}
+
+#addButton h1 {
+    font-size: 15px;
+
+}
+
+.contactInfo {
+    margin: auto;
+    width: 800px;
+}
+
+#saveIcon {
+    font-size: 30px;
+ 
+}
+
+#saveButton {
+    margin: auto;
+    width: 800px;
+    height: 70px;
+
+}
+
+
+#directory {
+    margin: auto;
+    width: 800px;
+
+
+}
+
+
+#alertError {
+    padding: auto;
+    margin: auto;
+    width: 800px;
+
+}
+
+#alertSuccess {
+    padding: auto;
+    margin: auto;
+    width: 800px;
+
+}

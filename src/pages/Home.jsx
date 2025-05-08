@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
 
@@ -28,18 +29,80 @@ export const Home = () => {
 
 	}
 
+	async function deleteContact(id) {
+
+		try {
+			const response = await fetch(`https://playground.4geeks.com/contact/agendas/Agenda/contacts/${id}`, {
+				method: 'DELETE',
+				headers: { 'Content-Type': 'application/json' }
+
+			})
+
+			if (response.status === 204) {
+				obtenerContacto()
+			}
+
+		} catch (error) {
+			console.log(error)
+		}
+
+
+	}
+
+
 	useEffect(() => {
 		obtenerContacto()
 	}, [])
 
 
 	return (
-		<div className="text-center mt-5">
+
+		<div id="directory" className="mt-5">
 			<ul className="list-group">
-				{lista.map((contacto, id) => (
-					<li key={id} className="list-group-item">
-						{contacto.name}
-					</li>
+				{lista.map((contacto, index) => (
+					<table id="directoryInfo" key={index} className="list-group-item">
+						<tr>
+							<th rowSpan={4}><img src="https://static.thenounproject.com/png/58663-200.png" /></th>
+							<th className="fs-2">{contacto.name} </th>
+						</tr>
+						<tr>
+							<th><i class="fa-1x float-end mx-3 fa-solid fa-envelope"></i></th>
+							<td className="fs-4 ">{contacto.email}</td>
+						</tr>
+						<tr>
+							<th><i class="fa-1x float-end mx-3 fa-solid fa-square-phone"></i></th>
+							<td className="fs-4">{contacto.phone}</td>
+						</tr>
+						<tr>
+							<th><i class="fa-2x float-end mx-3 fa-solid fa-location-dot"></i></th>
+							<td className="fs-4">{contacto.address}</td>
+						</tr>
+						<div className="btn-group float-end">
+							<Link className="btn btn-info icono" to={`/editContact/${contacto.id}`}><i class="fa-solid fa-pen-to-square"></i></Link>
+							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target={"#exampleModal" + contacto.id}>
+								<i class="fa-solid fa-trash"></i>
+							</button>
+							<div class="modal fade" id={"exampleModal" + contacto.id} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">ADVERTENCIA</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<p>¿Esta seguro que desea eliminar el contact? una vez eliminado el contacto los datos no podran ser recuperados</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+											<button className="btn btn-danger  icono" data-bs-dismiss="modal" onClick={() => deleteContact(contacto.id)}>Eliminar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							{/* 							
+ */}						</div>
+
+					</table>
 
 				))}
 
